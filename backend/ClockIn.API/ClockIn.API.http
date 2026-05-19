@@ -1,0 +1,6 @@
+@ClockIn.API_HostAddress = http://localhost:5036
+
+GET {{ClockIn.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
