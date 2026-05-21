@@ -1,4 +1,5 @@
 using ClockIn.API.Data;
+using ClockIn.API.DTOs;
 using ClockIn.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,27 @@ public static class EmployeeEndpoints
                 return Results.NotFound();
             }
             return Results.Ok(employee);
+        });
+
+        app.MapGet("/employees/{EmployeeNumber}/status", async (string EmployeeNumber, AppDbContext db) =>
+        {
+            var employee = await db.Employees.FirstOrDefaultAsync(e => e.EmployeeNumber == EmployeeNumber);
+            if (employee == null)
+            {
+                return Results.NotFound();
+            }
+
+            var existingEntry = await db.TimeEntries.FirstOrDefaultAsync(t => t.EmployeeId == employee.Id && t.ClockOutTime == null);
+
+            var employeeStatusResponse = new EmployeeStatusResponse
+            {
+                EmployeeId = employee.Id,
+                Name = employee.Name,
+                IsClockedIn = existingEntry != null
+
+            };
+
+            return Results.Ok(employeeStatusResponse);
         });
     }
 }
