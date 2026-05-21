@@ -15,5 +15,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapEmployeeEndpoints();
+app.MapTimeEntryEndpoints();
 
 app.Run();

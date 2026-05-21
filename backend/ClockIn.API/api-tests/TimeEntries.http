@@ -1,0 +1,7 @@
+@host = http://localhost:5036
+
+POST {{host}}/clock-in/1
+
+###
+
+POST {{host}}/clock-out/1
