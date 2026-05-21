@@ -1,0 +1,21 @@
+@ClockIn.API_HostAddress = http://localhost:5036
+
+@host = http://localhost:5036
+
+POST {{host}}/employees
+Content-Type: application/json
+
+{
+  "name": "Darth Vader",
+  "employeeNumber": "1234"
+}
+
+###
+
+GET {{host}}/employees
+Accept: application/json
+
+###
+
+GET {{host}}/employees/2
+Accept: application/json

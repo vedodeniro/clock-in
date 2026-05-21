@@ -1,5 +1,6 @@
 using ClockIn.API.Data;
 using Microsoft.EntityFrameworkCore;
+using ClockIn.API.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,5 +13,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.MapEmployeeEndpoints();
 
 app.Run();
